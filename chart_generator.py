@@ -142,14 +142,22 @@ def generate_charts(processed_data):
     chapter_fig.write_image(chapter_path)
     chart_paths['Chapter-Wise Accuracy'] = chapter_path
 
-    # --- Chart 8: Concept-wise Accuracy Scatter Plot ---
+   # --- Chart 8: Concept-wise Accuracy Scatter Plot (Vertical) ---
     concept_data = pd.DataFrame([
         {'Subject': sub, 'Concept': concept, 'Accuracy': metrics['accuracy'], 'Attempted': metrics['attempted']}
         for (sub, concept), metrics in processed_data['concept_metrics'].items()
     ])
     concept_fig = px.scatter(
-        concept_data, x='Concept', y='Accuracy', color='Subject', size='Attempted',
+        concept_data, x='Accuracy', y='Concept', color='Subject', size='Attempted',
         title="Concept-Wise Accuracy Breakdown"
+    )
+    # Rotate x-axis labels for better readability
+    concept_fig.update_layout(
+        xaxis_title="Accuracy (%)",
+        yaxis_title="Concept",
+        xaxis=dict(tickangle=0),
+        yaxis=dict(tickangle=0),
+        margin=dict(l=150, r=50, t=50, b=50)  # Adjust left margin for long concept names
     )
     concept_path = 'charts/concept_accuracy.png'
     concept_fig.write_image(concept_path)
