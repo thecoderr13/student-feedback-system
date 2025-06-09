@@ -2,14 +2,245 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Student Performance Feedback System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduAnalytics - Student Performance Feedback System</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <h1>Upload Test Data JSON</h1>
-    <form method="post" enctype="multipart/form-data">
-        <input type="file" name="file" accept=".json" required>
-        <input type="submit" value="Generate Report">
-    </form>
+    <div class="container">
+        <!-- Header Section -->
+        <header class="header">
+            <div class="logo">
+                <i class="fas fa-chart-line"></i>
+                <h1>EduAnalytics</h1>
+            </div>
+            <p class="tagline">AI-Powered Student Performance Analysis</p>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Hero Section -->
+            <section class="hero">
+                <div class="hero-content">
+                    <h2>Transform Test Data into Actionable Insights</h2>
+                    <p>Upload your test performance JSON file and receive a comprehensive, AI-generated report with personalized feedback, detailed analytics, and actionable recommendations.</p>
+                </div>
+                
+                <!-- Features Grid -->
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3>AI-Generated Feedback</h3>
+                        <p>Personalized, motivating insights tailored to individual performance patterns</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-bar"></i>
+                        </div>
+                        <h3>Comprehensive Analytics</h3>
+                        <p>Subject, chapter, difficulty, and concept-wise performance breakdowns</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h3>Time vs Accuracy</h3>
+                        <p>Detailed analysis of time management and its impact on performance</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-file-pdf"></i>
+                        </div>
+                        <h3>Professional Reports</h3>
+                        <p>Beautifully formatted PDF reports with charts and actionable suggestions</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Upload Section -->
+            <section class="upload-section">
+                <div class="upload-container">
+                    <div class="upload-header">
+                        <h3>Generate Your Performance Report</h3>
+                        <p>Upload your test data JSON file to get started</p>
+                    </div>
+                    
+                    <form method="post" enctype="multipart/form-data" class="upload-form" id="uploadForm">
+                        <div class="file-upload-wrapper">
+                            <div class="file-upload-area" id="fileUploadArea">
+                                <div class="upload-icon">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                </div>
+                                <div class="upload-text">
+                                    <h4>Drag & drop your JSON file here</h4>
+                                    <p>or <span class="browse-link">browse files</span></p>
+                                    <small>Supports: .json files only</small>
+                                </div>
+                                <input type="file" name="file" accept=".json" required id="fileInput" class="file-input">
+                            </div>
+                            
+                            <div class="file-info" id="fileInfo" style="display: none;">
+                                <div class="file-details">
+                                    <i class="fas fa-file-code"></i>
+                                    <div class="file-text">
+                                        <span class="file-name" id="fileName"></span>
+                                        <span class="file-size" id="fileSize"></span>
+                                    </div>
+                                    <button type="button" class="remove-file" id="removeFile">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="generate-btn" id="generateBtn" disabled>
+                            <i class="fas fa-magic"></i>
+                            <span>Generate Report</span>
+                        </button>
+                        
+                        <div class="loading-state" id="loadingState" style="display: none;">
+                            <div class="loading-spinner"></div>
+                            <div class="loading-text">
+                                <h4>Analyzing Performance Data...</h4>
+                                <p>This may take a few moments while we process your data and generate insights.</p>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Process Steps -->
+            <section class="process-section">
+                <h3>How It Works</h3>
+                <div class="process-steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Upload JSON Data</h4>
+                            <p>Upload your test performance data in JSON format</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>AI Analysis</h4>
+                            <p>Our AI processes and analyzes your performance patterns</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Generate Charts</h4>
+                            <p>Create comprehensive visualizations and insights</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Download Report</h4>
+                            <p>Receive a professional PDF with actionable recommendations</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2024 EduAnalytics. Empowering students through data-driven insights.</p>
+        </footer>
+    </div>
+
+    <script>
+        // File upload functionality
+        const fileInput = document.getElementById('fileInput');
+        const fileUploadArea = document.getElementById('fileUploadArea');
+        const fileInfo = document.getElementById('fileInfo');
+        const fileName = document.getElementById('fileName');
+        const fileSize = document.getElementById('fileSize');
+        const removeFile = document.getElementById('removeFile');
+        const generateBtn = document.getElementById('generateBtn');
+        const uploadForm = document.getElementById('uploadForm');
+        const loadingState = document.getElementById('loadingState');
+
+        // Drag and drop functionality
+        fileUploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            fileUploadArea.classList.add('drag-over');
+        });
+
+        fileUploadArea.addEventListener('dragleave', () => {
+            fileUploadArea.classList.remove('drag-over');
+        });
+
+        fileUploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            fileUploadArea.classList.remove('drag-over');
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                handleFileSelect(files[0]);
+            }
+        });
+
+        fileUploadArea.addEventListener('click', () => {
+            fileInput.click();
+        });
+
+        fileInput.addEventListener('change', (e) => {
+            if (e.target.files.length > 0) {
+                handleFileSelect(e.target.files[0]);
+            }
+        });
+
+        removeFile.addEventListener('click', () => {
+            fileInput.value = '';
+            fileInfo.style.display = 'none';
+            fileUploadArea.style.display = 'flex';
+            generateBtn.disabled = true;
+        });
+
+        function handleFileSelect(file) {
+            if (file.type === 'application/json' || file.name.endsWith('.json')) {
+                fileName.textContent = file.name;
+                fileSize.textContent = formatFileSize(file.size);
+                fileUploadArea.style.display = 'none';
+                fileInfo.style.display = 'block';
+                generateBtn.disabled = false;
+            } else {
+                alert('Please select a valid JSON file.');
+            }
+        }
+
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+
+        // Form submission with loading state
+        uploadForm.addEventListener('submit', (e) => {
+            if (!fileInput.files.length) {
+                e.preventDefault();
+                alert('Please select a file first.');
+                return;
+            }
+            
+            // Show loading state
+            loadingState.style.display = 'flex';
+            generateBtn.style.display = 'none';
+        });
+    </script>
 </body>
 </html>
