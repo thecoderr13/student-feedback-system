@@ -21,6 +21,14 @@
 
         <!-- Main Content -->
         <main class="main-content">
+            <!-- Error Message -->
+            {% if error %}
+            <div class="error-message">
+                <i class="fas fa-exclamation-triangle"></i>
+                <span>{{ error }}</span>
+            </div>
+            {% endif %}
+
             <!-- Hero Section -->
             <section class="hero">
                 <div class="hero-content">
@@ -147,8 +155,8 @@
                     <div class="step">
                         <div class="step-number">4</div>
                         <div class="step-content">
-                            <h4>Download Report</h4>
-                            <p>Receive a professional PDF with actionable recommendations</p>
+                            <h4>Preview & Download</h4>
+                            <p>Preview your report and download the professional PDF</p>
                         </div>
                     </div>
                 </div>

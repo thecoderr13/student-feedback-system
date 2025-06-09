@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report Preview - EduAnalytics</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <header class="header">
+            <div class="logo">
+                <i class="fas fa-chart-line"></i>
+                <h1>EduAnalytics</h1>
+            </div>
+            <p class="tagline">Report Preview</p>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Success Message -->
+            <div class="success-message">
+                <i class="fas fa-check-circle"></i>
+                <div class="success-text">
+                    <h3>Report Generated Successfully!</h3>
+                    <p>Your personalized performance analysis is ready for download.</p>
+                </div>
+            </div>
+
+            <!-- Report Preview Section -->
+            <section class="preview-section">
+                <div class="preview-header">
+                    <h2>Performance Report Preview</h2>
+                    <p>File: {{ report_data.filename }}</p>
+                </div>
+
+                <!-- Key Metrics Grid -->
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-icon accuracy">
+                            <i class="fas fa-bullseye"></i>
+                        </div>
+                        <div class="metric-content">
+                            <h3>Overall Accuracy</h3>
+                            <div class="metric-value">{{ "%.1f"|format(preview_stats.overall_accuracy) }}%</div>
+                        </div>
+                    </div>
+
+                    <div class="metric-card">
+                        <div class="metric-icon marks">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div class="metric-content">
+                            <h3>Total Marks</h3>
+                            <div class="metric-value">{{ preview_stats.total_marks }}</div>
+                        </div>
+                    </div>
+
+                    <div class="metric-card">
+                        <div class="metric-icon questions">
+                            <i class="fas fa-question-circle"></i>
+                        </div>
+                        <div class="metric-content">
+                            <h3>Questions Attempted</h3>
+                            <div class="metric-value">{{ preview_stats.questions_attempted }}</div>
+                        </div>
+                    </div>
+
+                    <div class="metric-card">
+                        <div class="metric-icon time">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="metric-content">
+                            <h3>Time Efficiency</h3>
+                            <div class="metric-value">{{ preview_stats.time_efficiency }}%</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Subject Performance -->
+                <div class="subject-performance">
+                    <h3>Subject Analysis</h3>
+                    <div class="subject-stats">
+                        <div class="subject-stat">
+                            <span class="label">Subjects Analyzed:</span>
+                            <span class="value">{{ preview_stats.subjects_count }}</span>
+                        </div>
+                        <div class="subject-stat">
+                            <span class="label">Strongest Subject:</span>
+                            <span class="value strong">{{ preview_stats.strongest_subject }}</span>
+                        </div>
+                        <div class="subject-stat">
+                            <span class="label">Area for Improvement:</span>
+                            <span class="value weak">{{ preview_stats.weakest_subject }}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI Feedback Preview -->
+                <div class="feedback-preview">
+                    <h3>AI-Generated Feedback Preview</h3>
+                    <div class="feedback-content">
+                        <p>{{ report_data.feedback_preview }}</p>
+                        <div class="feedback-note">
+                            <i class="fas fa-info-circle"></i>
+                            <span>This is a preview. The complete report includes detailed analysis, charts, and actionable recommendations.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Report Features -->
+                <div class="report-features">
+                    <h3>Your Complete Report Includes:</h3>
+                    <div class="features-list">
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Personalized AI-generated feedback and motivation</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Subject, chapter, and concept-wise performance breakdown</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Interactive charts and visualizations</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Time vs accuracy insights and patterns</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>2-3 specific actionable improvement suggestions</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Professional PDF format for easy sharing</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="action-buttons">
+                    <a href="{{ url_for('download_report') }}" class="download-btn">
+                        <i class="fas fa-download"></i>
+                        <span>Download Complete Report</span>
+                    </a>
+                    <a href="{{ url_for('new_report') }}" class="new-report-btn">
+                        <i class="fas fa-plus"></i>
+                        <span>Generate New Report</span>
+                    </a>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2024 EduAnalytics. Empowering students through data-driven insights.</p>
+        </footer>
+    </div>
+</body>
+</html>
