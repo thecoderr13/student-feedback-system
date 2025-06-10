@@ -116,6 +116,8 @@ gunicorn==22.0.0
 ### Environment Variables
 ```env
 GOOGLE_API_KEY=your-google-gemini-api-key
+SECRET_KEY=your-secret-key-for-dev
+
 ```
 
 ### API Key Setup
