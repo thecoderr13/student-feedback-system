@@ -8,7 +8,8 @@ import json
 import uuid
 
 app = Flask(__name__)
-app.secret_key = 'your-secret-key-here-change-this-to-something-secure'  # Change this to a secure secret key
+# Set the secret key from environment variable (required for session management)
+app.secret_key = os.getenv('SECRET_KEY', 'your-default-secret-key-for-dev')  # Fallback for local dev
 
 # Ensure uploads and reports directories exist
 UPLOAD_FOLDER = 'uploads'
